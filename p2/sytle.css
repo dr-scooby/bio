@@ -813,8 +813,8 @@ span{
     /* the image(photo) */
     .home-imgHover{
         pointer-events: none;
-        background: var(--bg-color);
-        opacity: .6;
+        /* background: var(--bg-color); */
+       /* opacity: .6; */
     }
 }
 

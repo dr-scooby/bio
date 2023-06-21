@@ -88,6 +88,7 @@ section{
 }
 .home-content{
     max-width: 70rem;
+    z-index: 99;
 }
 .home-content h1{
     font-size: 5rem;
@@ -101,7 +102,7 @@ section{
 
 .home-content .text-animate{
     position: relative;
-    width: 32.8rem;
+    width: 40rem;
 }
 
 .home-content .text-animate h3{
@@ -109,6 +110,25 @@ section{
     font-weight: 650;
     color: transparent;
     -webkit-text-stroke: .7px var(--main-color);
+    background-image: linear-gradient(var(--main-color), var(--main-color));
+    background-repeat: no-repeat;
+    -webkit-background-clip: text;
+    background-position: 0 0;
+    animation: homeBgText 6s linear infinite;
+    animation-delay: 2s;
+}
+
+.home-content .text-animate h3::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    border-right: 2px solid var(--main-color);
+    z-index: -1;
+    animation: homeCursorText 6s linear infinite;
+    animation-delay: 2s;
 }
 
 .home-content p{
@@ -742,16 +762,142 @@ span{
     .navbar{
         position: absolute;
         top: 100%;
-        left: 0;
+        left: -100%;
         width: 100%;
         padding: 1rem 4%;
-        background: var(--bg-color);
+        background: var(--main-color);
         box-shadow: 0 .5rem 1rem rgba(0,0,0, .2);
+        z-index: 1; /* puts in front */
+        transition: .25s ease;
+        transition-delay: .25s;
+    }
+
+    /* */
+    .navbar.active{
+        left: 0;
+        transition-delay: 0s;
+    }
+
+    .navbar .active-nav{
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: var(--bg-color);
+        border-top: .1rem solid rgba(0,0,0, .2);
+        z-index: -1;/* puts behind */
+        transition: .25s ease;
+        transition-delay: 0s;
+    }
+
+    .navbar.active .active-nav{
+        left: 0;
+        transition-delay: .25s;
     }
 
     .navbar a{
         display: block;
         font-size: 2rem;
         margin: 3rem 0;
+        transform: translateX(-20rem);
+        transition: .25s ease;
+        transition-delay: 0s;
+    }
+
+    .navbar.active a{
+        transform: translateX(0);
+        transition-delay: .25s;
+    }
+
+    /* the image(photo) */
+    .home-imgHover{
+        pointer-events: none;
+        background: var(--bg-color);
+        opacity: .6;
+    }
+}
+
+@media (max-width: 510px){
+    html{
+        font-size: 45%;
+    }
+
+    .home-content h1{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .home-sci{
+        width: 155px;
+    }
+
+    .home-sci a{
+        width: 37px;
+        height: 37px;
+    }
+}
+
+@media (max-width: 460px){
+   
+
+    .home-content h1{
+        font-size: 5.2rem;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .education{
+        padding: 10rem 4% 5rem 5%;
+
+    }
+
+    .contact form .input-box .input-field{
+        width: 100%;
+    }
+   
+    .footer{
+        flex-direction: column-reverse;
+    }
+
+    .footer p{
+        margin-top: 2rem;
+        text-align: center;
+    }
+}
+
+/* Keyframes Animation */
+@keyframes homeBgText{
+    0%, 10%,100%{
+        background-position: -33rem 0;
+    }
+
+   65%, 85%{
+        background-position: 0 0;
+    }
+}
+
+@keyframes homeBgText{
+    0%, 10%,100%{
+        background-position: -33rem 0;
+    }
+
+   65%, 85%{
+        background-position: 0 0;
+    }
+}
+
+@keyframes homeCursorText{
+    0%, 10%,100%{
+        width: 0;
+    }
+
+   65%, 78%, 85%{
+        width: 100%;
+        opacity: 1;
+    }
+
+    75%, 81%{
+        opacity: 0;
     }
 }

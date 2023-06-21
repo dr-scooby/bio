@@ -105,6 +105,7 @@ section{
     width: 40rem;
 }
 
+
 .home-content .text-animate h3{
     font-size: 3rem;
     font-weight: 650;
@@ -310,11 +311,48 @@ span{
 }
 
 .about-content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     text-align: center;
 }
 
 .about-content h3{
     font-size: 2.6rem;
+    text-align: center;
+}
+
+.about-content .text-animate{
+    
+    position:relative;
+    width: 40rem;
+}
+
+.about-content .text-animate h3{
+    font-size: 3rem;
+    font-weight: 650;
+    color: transparent;
+    -webkit-text-stroke: .7px var(--main-color);
+    background-image: linear-gradient(var(--main-color), var(--main-color));
+    background-repeat: no-repeat;
+    -webkit-background-clip: text;
+    background-position: 0 0;
+    animation: homeBgText 6s linear infinite;
+    animation-delay: 2s;
+}
+
+.about-content .text-animate h3::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    border-right: 2px solid var(--main-color);
+    z-index: -1;
+    animation: homeCursorText 6s linear infinite;
+    animation-delay: 2s;
 }
 
 .about-content p{
@@ -869,7 +907,7 @@ span{
 /* Keyframes Animation */
 @keyframes homeBgText{
     0%, 10%,100%{
-        background-position: -33rem 0;
+        background-position: -40rem 0;
     }
 
    65%, 85%{
@@ -879,7 +917,7 @@ span{
 
 @keyframes homeBgText{
     0%, 10%,100%{
-        background-position: -33rem 0;
+        background-position: -40rem 0;
     }
 
    65%, 85%{
